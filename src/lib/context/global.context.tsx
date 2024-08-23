@@ -1,17 +1,12 @@
 import { createContext, PropsWithChildren } from "react";
-import {
-	UseGlobalContextStateType,
-	useGlobalContextState,
-} from "./global.context.hook";
+import { useGlobalContextState } from "./global.context.hook";
 
-export const ContextGlobal = createContext<
-	UseGlobalContextStateType | undefined
->(undefined);
+export const ContextGlobal = createContext({});
 
 export default function ContextGlobalProvider({ children }: PropsWithChildren) {
-	const contextValues = useGlobalContextState();
+	const contextGlobalState = useGlobalContextState();
 	return (
-		<ContextGlobal.Provider value={{ ...contextValues }}>
+		<ContextGlobal.Provider value={contextGlobalState}>
 			{children}
 		</ContextGlobal.Provider>
 	);

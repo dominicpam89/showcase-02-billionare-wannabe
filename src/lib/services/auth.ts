@@ -12,7 +12,7 @@ import { auth } from "@/lib/firebase.config";
 const provider = new GoogleAuthProvider();
 provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
 
-export function googleAuthRedirect() {
+export async function googleAuthRedirect() {
 	signInWithRedirect(auth, provider);
 }
 export type AuthRedirect = ReturnType<typeof googleAuthRedirect>;
@@ -50,7 +50,7 @@ function getGoogleAuthResult(result: UserCredential) {
 }
 export type AuthResult = ReturnType<typeof getGoogleAuthResult>;
 
-function getLimitedUserInfo(user: User) {
+export function getLimitedUserInfo(user: User) {
 	const { email, emailVerified, displayName, uid, photoURL } = user;
 	return { email, emailVerified, displayName, uid, photoURL };
 }
