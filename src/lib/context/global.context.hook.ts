@@ -2,12 +2,9 @@ import {
 	LimitedUserInfo,
 	getLimitedUserInfo,
 	googleAuthPopup,
-	googleAuthRedirect,
-	googleAuthRedirectNext,
 } from "@/lib/services/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase.config";
-import { getDeviceType } from "../utils";
 import { useQuery, useMutation } from "@tanstack/react-query";
 
 export const useGlobalContextState = () => {
@@ -22,25 +19,22 @@ export const useGlobalContextState = () => {
 			}),
 	});
 
-	const deviceType = getDeviceType();
 	const {
 		mutate: loginGoogle,
-		isPending,
-		error,
-		isError,
+		isPending: authPending,
+		error: authError,
+		isError: isAuthError,
 	} = useMutation({
-		mutationFn:
-			deviceType == "desktop" ? googleAuthPopup : googleAuthRedirectNext,
+		mutationFn: googleAuthPopup,
 	});
 
 	return {
 		currentUser,
 		triggerAuth,
 		loginGoogle,
-		isPending,
-		error,
-		isError,
-		googleAuthRedirect,
+		authPending,
+		authError,
+		isAuthError,
 	};
 };
 export type GlobalContextState = ReturnType<typeof useGlobalContextState>;

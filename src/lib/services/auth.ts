@@ -1,8 +1,6 @@
 import {
-	getRedirectResult,
 	GoogleAuthProvider,
 	signInWithPopup,
-	signInWithRedirect,
 	UserCredential,
 	User,
 } from "firebase/auth";
@@ -11,23 +9,6 @@ import { auth } from "@/lib/firebase.config";
 // let GoogleAuthProvider to handle authentication
 const provider = new GoogleAuthProvider();
 provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
-
-export async function googleAuthRedirect() {
-	signInWithRedirect(auth, provider);
-}
-export type AuthRedirect = ReturnType<typeof googleAuthRedirect>;
-
-export async function googleAuthRedirectNext() {
-	try {
-		const result = await getRedirectResult(auth);
-		if (!result) throw new Error("You didn't signed in properly");
-		return getGoogleAuthResult(result);
-	} catch (error) {
-		console.error(error);
-		throw error as Error;
-	}
-}
-export type AuthRedirectNext = ReturnType<typeof googleAuthRedirectNext>;
 
 export async function googleAuthPopup() {
 	try {
