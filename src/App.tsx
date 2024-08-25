@@ -1,15 +1,13 @@
-import { useContextGlobal } from "./lib/hooks/useContextGlobal";
-import { Button } from "@/components/ui/button";
+import Auth from "@/components/auth/Auth";
+import MainLayout from "@/components/common/MainLayout";
+import { useContextGlobal } from "@/lib/hooks/useContextGlobal";
 
 export default function App() {
-	const { currentUser, loginGoogle, logoutGoogle, logoutState } =
-		useContextGlobal();
-	console.log("currentUser", currentUser);
-	console.log("logoutState status", logoutState.status);
+	const { currentUser } = useContextGlobal();
 	return (
-		<div className="w-full p-12 flex flex-col gap-4 justify-center">
-			<Button onClick={() => loginGoogle()}>Test login with google</Button>
-			{currentUser && <Button onClick={() => logoutGoogle()}>Logout</Button>}
-		</div>
+		<MainLayout>
+			{!currentUser && <Auth />}
+			{currentUser && <div>Protected Resources</div>}
+		</MainLayout>
 	);
 }
