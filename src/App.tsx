@@ -3,6 +3,7 @@ import MainLayout from "@/components/common/MainLayout";
 import { useContextGlobal } from "@/lib/hooks/useContextGlobal";
 import LogoutButton from "./components/common/LogoutButton";
 import LoadingUI from "./components/common/LoadingUI";
+import MainEntry from "./components/main/MainEntry";
 
 export default function App() {
 	const { currentUser, mainState } = useContextGlobal();
@@ -11,10 +12,10 @@ export default function App() {
 			{mainState.isLoading && <LoadingUI shown={mainState.isLoading} />}
 			{mainState.isFetched && !currentUser && <Auth />}
 			{mainState.isFetched && currentUser && (
-				<div>
-					<div>Protected Resources</div>
+				<>
+					<MainEntry />
 					<LogoutButton />
-				</div>
+				</>
 			)}
 		</MainLayout>
 	);

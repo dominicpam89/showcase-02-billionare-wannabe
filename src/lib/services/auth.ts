@@ -3,6 +3,8 @@ import {
 	signInWithPopup,
 	signInWithEmailAndPassword,
 	createUserWithEmailAndPassword,
+	sendEmailVerification,
+	updateProfile,
 	UserCredential,
 	User,
 } from "firebase/auth";
@@ -37,14 +39,39 @@ export async function authLogin({ email, password }: AuthParams) {
 	}
 }
 
-export async function authRegister({ email, password }: AuthParams) {
+interface AuthParamsRegister extends AuthParams {
+	firstName: string;
+	lastName: string;
+}
+export async function authRegister({
+	email,
+	password,
+	firstName,
+	lastName,
+}: AuthParamsRegister) {
 	try {
 		const result = await createUserWithEmailAndPassword(
 			auth,
 			email,
 			password
 		);
+		await updateProfile(result.user, {
+			displayName: firstName.concat(" ").concat(lastName),
+		});
+		await sendEmailVerification(result.user);
 		return getGoogleAuthResult(result);
+	} catch (error) {
+		console.error(error);
+		throw error as Error;
+	}
+}
+
+export async function resendVerification() {
+	try {
+		const user = auth.currentUser;
+		if (!user) throw new Error("You're not logged in!");
+		await sendEmailVerification(user);
+		return { status: true, message: "Verification sent" };
 	} catch (error) {
 		console.error(error);
 		throw error as Error;
