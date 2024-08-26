@@ -15,19 +15,23 @@ export default function AuthCardHeader({
 	text,
 	textLink,
 }: Props) {
+	const handleSwitchForm = () => {
+		if (formType == "login") switchForm("register");
+		else switchForm("login");
+	};
 	return (
 		<CardHeader className="text-center">
 			<div className="relative size-8 w-full text-center mb-4 text-primary">
 				<FaPiggyBank aria-label="mock-logo" className="w-full h-full" />
 			</div>
 			<CardTitle className="text-primary font-bold">
-				{formTypeText} to be Billionare
+				{formTypeText}
 			</CardTitle>
 			<CardDescription
 				className="text-base cursor-pointer transition-default transform hover:opacity-80"
-				onClick={() => switchForm(formType)}
+				onClick={handleSwitchForm}
 			>
-				{text}
+				{text + " "}
 				<span className="underline underline-offset-2">{textLink}</span>
 			</CardDescription>
 		</CardHeader>

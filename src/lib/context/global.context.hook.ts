@@ -5,6 +5,7 @@ import {
 	authLogin,
 	authRegister,
 	resendVerification,
+	resetPassword,
 } from "@/lib/services/auth";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase.config";
@@ -178,6 +179,33 @@ export const useGlobalContextState = () => {
 			},
 		});
 
+	const { mutate: onResetPassword, ...resetPasswordState } = useMutation({
+		mutationFn: (data: { email: string }) => {
+			toast({
+				title: "Reset password request is submitted",
+				description: "Sending reset password link to your email...",
+			});
+			return resetPassword(data);
+		},
+		onError(err) {
+			toast({
+				title: "Failed to send reset password link",
+				description: err.message,
+				variant: "destructive",
+			});
+		},
+		onSuccess() {
+			toast({
+				title: "Reset password link has been sent",
+				description: "Please check your inbox!",
+			});
+		},
+		onSettled() {
+			queryClient.invalidateQueries({ queryKey: ["auth"] });
+			triggerAuth();
+		},
+	});
+
 	return {
 		mainState,
 		currentUser,
@@ -186,12 +214,14 @@ export const useGlobalContextState = () => {
 		loginWithEmail,
 		loginGoogle,
 		onResendVerification,
+		onResetPassword,
 		logout,
 		loginState,
 		logoutState,
 		registerWithEmailState,
 		loginWithEmailState,
 		resendVerificationState,
+		resetPasswordState,
 	};
 };
 export type GlobalContextState = ReturnType<typeof useGlobalContextState>;

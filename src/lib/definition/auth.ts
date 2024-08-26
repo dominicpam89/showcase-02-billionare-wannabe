@@ -52,6 +52,11 @@ export const loginSchema = z.object({
 		), // At least one special character
 });
 
+export const forgetPasswordSchema = z.object({
+	email: z.string().min(1, "Email is required").email("Invalid email address"), // Checks for a valid email format
+});
+export type ForgetPasswordSchema = z.infer<typeof forgetPasswordSchema>;
+
 export type AuthSchema<T extends "login" | "register"> = T extends "login"
 	? z.infer<typeof loginSchema>
 	: z.infer<typeof registerSchema>;

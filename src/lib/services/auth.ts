@@ -4,6 +4,7 @@ import {
 	signInWithEmailAndPassword,
 	createUserWithEmailAndPassword,
 	sendEmailVerification,
+	sendPasswordResetEmail,
 	updateProfile,
 	UserCredential,
 	User,
@@ -72,6 +73,16 @@ export async function resendVerification() {
 		if (!user) throw new Error("You're not logged in!");
 		await sendEmailVerification(user);
 		return { status: true, message: "Verification sent" };
+	} catch (error) {
+		console.error(error);
+		throw error as Error;
+	}
+}
+
+export async function resetPassword({ email }: { email: string }) {
+	try {
+		await sendPasswordResetEmail(auth, email);
+		return { status: true, message: "Reset password link sent" };
 	} catch (error) {
 		console.error(error);
 		throw error as Error;

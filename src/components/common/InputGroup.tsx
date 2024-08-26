@@ -81,7 +81,7 @@ export default function InputGroup<T extends FieldValues>({
 				)}
 			</div>
 			{errors[name] && (
-				<p className="text-sm text-destructive">
+				<p className="text-sm text-destructive transition-default">
 					{(errors[name] as FieldError)?.message}
 				</p>
 			)}
