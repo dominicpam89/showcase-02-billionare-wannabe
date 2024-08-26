@@ -52,7 +52,7 @@ export const useGlobalContextState = () => {
 	});
 
 	// state management of logout with Google Provider
-	const { mutate: logoutGoogle, ...logoutState } = useMutation({
+	const { mutate: logout, ...logoutState } = useMutation({
 		mutationFn: () => {
 			toast({
 				title: "Logging out...",
@@ -83,7 +83,7 @@ export const useGlobalContextState = () => {
 		currentUser,
 		triggerAuth,
 		loginGoogle,
-		logoutGoogle,
+		logout,
 		loginState,
 		logoutState,
 	};
