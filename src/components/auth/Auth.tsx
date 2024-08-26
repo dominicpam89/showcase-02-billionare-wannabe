@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Card } from "../ui/card";
 import AuthCardHeader from "./AuthCardHeader";
 import AuthCardContent from "./AuthCardContent";
@@ -11,16 +11,19 @@ export default function Auth() {
 		else setFormType("login");
 	}, []);
 
-	const formTypeText = formType
-		.slice(0, 1)
-		.toUpperCase()
-		.concat(formType.slice(1));
+	const formTypeText = useMemo(
+		() => formType.slice(0, 1).toUpperCase().concat(formType.slice(1)),
+		[formType]
+	);
 	const text =
 		formType == "login"
-			? "You don't have bilionare account? Silly! Create one!"
-			: "You already trying so hard to become billionare and have account?";
+			? "You don't have bilionare account? Silly! "
+			: "You already trying so hard to become billionare and ";
 
-	const mainProps = { formType, formTypeText, text, switchForm };
+	const textLink =
+		formType == "login" ? "Create account!" : "already have account?";
+
+	const mainProps = { formType, formTypeText, switchForm, text, textLink };
 
 	return (
 		<Card

@@ -6,12 +6,14 @@ interface Props {
 	switchForm: (formType: AuthFormType) => void;
 	formTypeText: string;
 	text: string;
+	textLink: string;
 }
 export default function AuthCardHeader({
 	formType,
 	formTypeText,
 	switchForm,
 	text,
+	textLink,
 }: Props) {
 	return (
 		<CardHeader className="text-center">
@@ -22,10 +24,11 @@ export default function AuthCardHeader({
 				{formTypeText} to be Billionare
 			</CardTitle>
 			<CardDescription
-				className="text-base underline underline-offset-2 cursor-pointer transform hover:opacity-80"
+				className="text-base cursor-pointer transition-default transform hover:opacity-80"
 				onClick={() => switchForm(formType)}
 			>
 				{text}
+				<span className="underline underline-offset-2">{textLink}</span>
 			</CardDescription>
 		</CardHeader>
 	);
