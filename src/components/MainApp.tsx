@@ -1,3 +1,7 @@
 export default function MainApp() {
-	return <div>Main App</div>;
+	return (
+		<div>
+			<h1>Main App</h1>
+		</div>
+	);
 }
