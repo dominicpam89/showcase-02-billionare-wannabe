@@ -1,7 +1,8 @@
 import { useCallback, useState } from "react";
-import Login from "./Login";
-import Register from "./Register";
-import AuthCard from "./AuthCard";
+import { Card } from "../ui/card";
+import AuthCardHeader from "./AuthCardHeader";
+import AuthCardContent from "./AuthCardContent";
+import AuthCardFooter from "./AuthCardFooter";
 
 export default function Auth() {
 	const [formType, setFormType] = useState<AuthFormType>("login");
@@ -19,12 +20,16 @@ export default function Auth() {
 			? "You don't have bilionare account? Silly! Create one!"
 			: "You already trying so hard to become billionare and have account?";
 
-	const authCardProps = { formType, formTypeText, text, switchForm };
+	const mainProps = { formType, formTypeText, text, switchForm };
 
 	return (
-		<AuthCard {...authCardProps}>
-			{formType == "login" && <Login />}
-			{formType == "register" && <Register />}
-		</AuthCard>
+		<Card
+			aria-label="section-auth"
+			className="w-full max-w-[640px] min-w-[420px] mx-auto mt-8 p-8 flex flex-col gap-8"
+		>
+			<AuthCardHeader {...mainProps} />
+			<AuthCardContent formType={formType} />
+			<AuthCardFooter formTypeText={formTypeText} />
+		</Card>
 	);
 }
