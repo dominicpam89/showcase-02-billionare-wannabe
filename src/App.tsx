@@ -3,7 +3,7 @@ import MainLayout from "@/components/common/MainLayout";
 import { useContextGlobal } from "@/lib/hooks/useContextGlobal";
 import LogoutButton from "./components/common/LogoutButton";
 import LoadingUI from "./components/common/LoadingUI";
-import MainEntry from "./components/main/MainEntry";
+import MainEntry from "./components/main-entry/MainEntry";
 
 export default function App() {
 	const { currentUser, mainState } = useContextGlobal();
