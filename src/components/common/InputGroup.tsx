@@ -65,6 +65,7 @@ export default function InputGroup<T extends FieldValues>({
 				)}
 				{inputType == "password" && (
 					<Button
+						aria-label="password-toggle"
 						onClick={togglePass}
 						variant="outline"
 						size="icon"

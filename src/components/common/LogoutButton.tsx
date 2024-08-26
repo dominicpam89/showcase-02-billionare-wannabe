@@ -6,6 +6,7 @@ export default function LogoutButton() {
 	const { logout, logoutState } = useContextGlobal();
 	return (
 		<Button
+			aria-label="logout-button"
 			variant="ghost"
 			className="flex items-center w-full"
 			onClick={() => logout()}
