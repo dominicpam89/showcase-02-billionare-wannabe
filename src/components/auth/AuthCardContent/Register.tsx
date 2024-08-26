@@ -3,9 +3,9 @@ import { AuthSchema, registerSchema } from "@/lib/definition/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider } from "react-hook-form";
-import InputGroup from "../common/InputGroup";
+import InputGroup from "../../common/InputGroup";
 import { KeyIcon, MailIcon } from "lucide-react";
-import FormRow from "../common/FormRow";
+import FormRow from "../../common/FormRow";
 import { authIconClass } from "@/lib/utils";
 
 export default function Register() {
@@ -31,7 +31,6 @@ export default function Register() {
 				onSubmit={methods.handleSubmit(onValid)}
 				className="w-full flex flex-col gap-4"
 			>
-				<h1>Register Form</h1>
 				<FormRow>
 					<InputGroup<Schema> name="firstName" placeholder="First Name" />
 					<InputGroup<Schema> name="lastName" placeholder="Last Name" />

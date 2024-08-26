@@ -1,6 +1,6 @@
 import { CardContent } from "@/components/ui/card";
-import Login from "./Login";
-import Register from "./Register";
+import Login from "./AuthCardContent/Login";
+import Register from "./AuthCardContent/Register";
 
 interface Props {
 	formType: AuthFormType;

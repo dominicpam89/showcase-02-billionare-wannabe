@@ -3,9 +3,9 @@ import { AuthSchema, loginSchema } from "@/lib/definition/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider } from "react-hook-form";
-import InputGroup from "../common/InputGroup";
+import InputGroup from "../../common/InputGroup";
 import { DiscIcon, KeyIcon } from "lucide-react";
-import FormRow from "../common/FormRow";
+import FormRow from "../../common/FormRow";
 import { authIconClass } from "@/lib/utils";
 
 export default function Login() {
@@ -28,7 +28,6 @@ export default function Login() {
 				onSubmit={methods.handleSubmit(onValid)}
 				className="w-full flex flex-col gap-4"
 			>
-				<h1>Login Form</h1>
 				<InputGroup<Schema>
 					icon={<DiscIcon className={authIconClass} />}
 					name="email"

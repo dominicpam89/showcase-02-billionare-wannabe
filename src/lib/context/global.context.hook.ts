@@ -12,7 +12,11 @@ import { queryClient } from "../utils";
 export const useGlobalContextState = () => {
 	// get triggerAuth to get recent state of auth from firebase
 	const { toast } = useToast();
-	const { data: currentUser, refetch: triggerAuth } = useQuery({
+	const {
+		data: currentUser,
+		refetch: triggerAuth,
+		...mainState
+	} = useQuery({
 		queryKey: ["auth"],
 		queryFn: () =>
 			new Promise<LimitedUserInfo | null>((resolve) => {
@@ -80,6 +84,7 @@ export const useGlobalContextState = () => {
 	});
 
 	return {
+		mainState,
 		currentUser,
 		triggerAuth,
 		loginGoogle,
