@@ -38,6 +38,7 @@ export default function Register() {
 	return (
 		<FormProvider {...methods}>
 			<form
+				aria-label="form-register"
 				onSubmit={methods.handleSubmit(onValid)}
 				className="w-full flex flex-col gap-4"
 			>

@@ -28,6 +28,7 @@ export default function Login() {
 	return (
 		<FormProvider {...methods}>
 			<form
+				aria-label="form-login"
 				onSubmit={methods.handleSubmit(onValid)}
 				className="w-full flex flex-col gap-4"
 			>

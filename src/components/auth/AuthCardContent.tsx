@@ -2,7 +2,7 @@ import { CardContent } from "@/components/ui/card";
 import Login from "./AuthCardContent/Login";
 import Register from "./AuthCardContent/Register";
 
-interface Props {
+export interface Props {
 	formType: AuthFormType;
 }
 export default function AuthCardContent({ formType }: Props) {

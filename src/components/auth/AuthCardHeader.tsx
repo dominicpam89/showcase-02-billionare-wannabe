@@ -1,7 +1,7 @@
 import { FaPiggyBank } from "react-icons/fa";
 import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-interface Props {
+export interface Props {
 	formType: AuthFormType;
 	switchForm: (formType: AuthFormType) => void;
 	formTypeText: string;
@@ -18,7 +18,7 @@ export default function AuthCardHeader({
 	return (
 		<CardHeader className="text-center">
 			<div className="relative size-8 w-full text-center mb-4 text-primary">
-				<FaPiggyBank className="w-full h-full" />
+				<FaPiggyBank aria-label="mock-logo" className="w-full h-full" />
 			</div>
 			<CardTitle className="text-primary font-bold">
 				{formTypeText} to be Billionare
