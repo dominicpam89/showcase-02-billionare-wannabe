@@ -16,3 +16,4 @@ export function getDeviceType(): "mobile" | "desktop" {
 export type DeviceType = ReturnType<typeof getDeviceType>;
 
 export const queryClient = new QueryClient();
+export const authIconClass = "size-4";
