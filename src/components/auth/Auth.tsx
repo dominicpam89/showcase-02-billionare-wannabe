@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { Card } from "../ui/card";
+import { Card } from "@/components/ui/card";
 import AuthCardHeader from "./AuthCardHeader";
 import AuthCardContent from "./AuthCardContent";
 import AuthCardFooter from "./AuthCardFooter";

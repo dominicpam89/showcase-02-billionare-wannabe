@@ -1,5 +1,5 @@
 import { FaPiggyBank } from "react-icons/fa";
-import { CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface Props {
 	formType: AuthFormType;

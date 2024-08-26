@@ -1,4 +1,4 @@
-import { CardContent } from "../ui/card";
+import { CardContent } from "@/components/ui/card";
 import Login from "./Login";
 import Register from "./Register";
 
