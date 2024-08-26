@@ -7,8 +7,11 @@ import InputGroup from "../../common/InputGroup";
 import { DiscIcon, KeyIcon } from "lucide-react";
 import FormRow from "../../common/FormRow";
 import { authIconClass } from "@/lib/utils";
+import { useContextGlobal } from "@/lib/hooks/useContextGlobal";
 
 export default function Login() {
+	const { loginWithEmail, loginWithEmailState } = useContextGlobal();
+	const disabled = loginWithEmailState.isPending;
 	type Schema = AuthSchema<"login">;
 	const methods = useForm<Schema>({
 		mode: "onBlur",
@@ -20,7 +23,7 @@ export default function Login() {
 		},
 	});
 	const onValid: SubmitHandler<Schema> = (data) => {
-		console.log(data);
+		loginWithEmail(data);
 	};
 	return (
 		<FormProvider {...methods}>
@@ -33,6 +36,7 @@ export default function Login() {
 					name="email"
 					label="Email"
 					placeholder="Email"
+					disabled={disabled}
 				/>
 				<InputGroup<Schema>
 					icon={<KeyIcon className={authIconClass} />}
@@ -40,12 +44,18 @@ export default function Login() {
 					label="Password"
 					placeholder="Password"
 					inputType="password"
+					disabled={disabled}
 				/>
 				<FormRow>
-					<Button type="reset" variant="secondary" className="w-full">
+					<Button
+						type="reset"
+						variant="secondary"
+						className="w-full"
+						disabled={disabled}
+					>
 						Reset
 					</Button>
-					<Button type="submit" className="w-full">
+					<Button type="submit" className="w-full" disabled={disabled}>
 						Submit
 					</Button>
 				</FormRow>

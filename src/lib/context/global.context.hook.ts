@@ -58,7 +58,7 @@ export const useGlobalContextState = () => {
 		},
 	});
 
-	// state management of logout with Google Provider
+	// state management of logout
 	const { mutate: logout, ...logoutState } = useMutation({
 		mutationFn: () => {
 			toast({
