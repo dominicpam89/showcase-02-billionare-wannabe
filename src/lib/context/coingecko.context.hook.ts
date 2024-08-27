@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { CoinGecko } from "../services/coin-gecko";
+import { useState } from "react";
 
 export const usePing = (coinGecko: CoinGecko) => {
 	const pingState = useQuery({
@@ -30,3 +31,10 @@ export const useGetAllCoins = (coinGecko: CoinGecko) => {
 };
 // returning the function type, since the function would be used to be called later in the app
 export type UseGetAllCoins = typeof useGetAllCoins;
+
+export const useCurrentCurrency = () => {
+	const [currentCurrency, setCurrentCurrency] = useState<UserCurrency>("usd");
+	const onChangeCurrentCurrency = (c: UserCurrency) => setCurrentCurrency(c);
+	return { currentCurrency, onChangeCurrentCurrency };
+};
+export type UseCurrentCurrency = typeof useCurrentCurrency;
