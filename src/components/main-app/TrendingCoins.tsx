@@ -1,4 +1,4 @@
-import { useListTrending } from "@/lib/hooks/coin-gecko/useListTrending";
+import { useCoinGecko } from "@/lib/hooks/useCoinGecko";
 import ErrorUI from "../common/ErrorUI";
 
 // Homework: add skeleton for list coins when loading
@@ -8,7 +8,8 @@ import ErrorUI from "../common/ErrorUI";
 // if possible create context for managing UI (pages or tabs)
 
 export default function TrendingCoins() {
-	const { data, isLoading, isError, error } = useListTrending();
+	const { coinGecko, useGetTrendingList } = useCoinGecko();
+	const { data, isLoading, error, isError } = useGetTrendingList(coinGecko);
 	if (isLoading) return <>Temporary loading UI</>;
 	console.log("coins", data?.coins);
 	console.log("categories", data?.categories);
