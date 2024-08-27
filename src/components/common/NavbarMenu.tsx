@@ -7,21 +7,26 @@ import {
 	SheetTrigger,
 } from "@/components/ui/sheet";
 import { MenuIcon } from "lucide-react";
+import FormUpdateProfile from "../main-app/FormUpdateProfile";
+import { useState } from "react";
 
 export default function NavbarMenu() {
+	const [open, setOpen] = useState(false);
+	const onOpenChange = (o: boolean) => setOpen(o);
 	return (
-		<Sheet>
+		<Sheet open={open} onOpenChange={onOpenChange}>
 			<SheetTrigger>
 				<MenuIcon className="size-6" />
 			</SheetTrigger>
-			<SheetContent>
+			<SheetContent className="flex flex-col gap-8 overflow-scroll p-8">
 				<SheetHeader>
-					<SheetTitle>Are you absolutely sure?</SheetTitle>
+					<SheetTitle>Edit Your Profile</SheetTitle>
 					<SheetDescription>
-						This action cannot be undone. This will permanently delete
-						your account and remove your data from our servers.
+						You can edit your profile, or change your password
 					</SheetDescription>
 				</SheetHeader>
+				{/* Form update profile as main content */}
+				<FormUpdateProfile />
 			</SheetContent>
 		</Sheet>
 	);

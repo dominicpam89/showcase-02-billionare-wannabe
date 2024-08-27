@@ -18,8 +18,8 @@ export default function Login() {
 		reValidateMode: "onChange",
 		resolver: zodResolver(loginSchema),
 		defaultValues: {
-			email: "example@email.com",
-			password: "example",
+			email: "stardreamer.extrim2@gmail.com",
+			password: "Silit5432!",
 		},
 	});
 	const onValid: SubmitHandler<Schema> = (data) => {

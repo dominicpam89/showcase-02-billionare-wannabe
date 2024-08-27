@@ -1,13 +1,10 @@
 export type FormUpdateProfileSchema = {
-	name: {
-		firstName: string;
-		lastName: string;
-	};
+	name: string;
 	email: string;
 	password: {
 		old: string;
 		new: string;
 		confirm: string;
 	};
-	photoURL: File;
+	photo: File;
 };
