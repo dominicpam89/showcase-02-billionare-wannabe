@@ -201,7 +201,7 @@ type Category = {
 	data: CategoryData;
 };
 
-export type ApiResponse = {
+export type ApiResponseTrendingCoins = {
 	coins: Coin[];
 	nfts: Nft[];
 	categories: Category[];
