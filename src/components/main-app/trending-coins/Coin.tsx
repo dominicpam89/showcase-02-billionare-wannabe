@@ -4,7 +4,6 @@ interface Props {
 	data: ApiResponseTrendingCoins["coins"][number];
 }
 export default function Coin({ data: { item } }: Props) {
-	console.log(item);
 	return (
 		<div aria-label="coin-data" className="flex gap-2 items-center">
 			<img
