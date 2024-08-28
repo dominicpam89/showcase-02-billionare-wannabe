@@ -32,6 +32,26 @@ export const useGlobalContextState = () => {
 			}),
 	});
 
+	const createMutationOptions = (successMessage: string) => ({
+		onError: (err: any) => {
+			toast({
+				title: "Operation Failed",
+				description: err.message,
+				variant: "destructive",
+			});
+		},
+		onSuccess: () => {
+			toast({
+				title: "Operation Successful",
+				description: successMessage,
+			});
+		},
+		onSettled: () => {
+			queryClient.invalidateQueries({ queryKey: ["auth"] });
+			triggerAuth();
+		},
+	});
+
 	// state management of login with Google Provider
 	const { mutate: loginGoogle, ...loginState } = useMutation({
 		mutationFn: () => {
@@ -41,23 +61,7 @@ export const useGlobalContextState = () => {
 			});
 			return googleAuthPopup();
 		},
-		onError(err) {
-			toast({
-				title: "Auth Error",
-				description: err.message,
-				variant: "destructive",
-			});
-		},
-		onSuccess() {
-			toast({
-				title: "Auth Success",
-				description: "Successfully logged in",
-			});
-		},
-		onSettled() {
-			queryClient.invalidateQueries({ queryKey: ["auth"] });
-			triggerAuth();
-		},
+		...createMutationOptions("Successfully login with google"),
 	});
 
 	// state management of logout
@@ -69,23 +73,7 @@ export const useGlobalContextState = () => {
 			});
 			return signOut(auth);
 		},
-		onError(err) {
-			toast({
-				title: "Logout Failed",
-				description: err.message,
-				variant: "destructive",
-			});
-		},
-		onSuccess() {
-			toast({
-				title: "Logout Success",
-				description: "Successfully logged out",
-			});
-		},
-		onSettled() {
-			queryClient.invalidateQueries({ queryKey: ["auth"] });
-			triggerAuth();
-		},
+		...createMutationOptions("Successfully logged out!"),
 	});
 
 	// state management of login with username and password
@@ -97,23 +85,7 @@ export const useGlobalContextState = () => {
 			});
 			return authLogin(data);
 		},
-		onError(err) {
-			toast({
-				title: "Auth Error",
-				description: err.message,
-				variant: "destructive",
-			});
-		},
-		onSuccess() {
-			toast({
-				title: "Auth Success",
-				description: "Successfully logged in",
-			});
-		},
-		onSettled() {
-			queryClient.invalidateQueries({ queryKey: ["auth"] });
-			triggerAuth();
-		},
+		...createMutationOptions("Successfully logged in with email!"),
 	});
 
 	// state management of register with username and password
@@ -131,23 +103,7 @@ export const useGlobalContextState = () => {
 				});
 				return authRegister(data);
 			},
-			onError(err) {
-				toast({
-					title: "Registration Error",
-					description: err.message,
-					variant: "destructive",
-				});
-			},
-			onSuccess() {
-				toast({
-					title: "Auth Success",
-					description: "Successfully registered!",
-				});
-			},
-			onSettled() {
-				queryClient.invalidateQueries({ queryKey: ["auth"] });
-				triggerAuth();
-			},
+			...createMutationOptions("Successfully registered with email"),
 		}
 	);
 
@@ -161,23 +117,7 @@ export const useGlobalContextState = () => {
 				});
 				return resendVerification();
 			},
-			onError(err) {
-				toast({
-					title: "Failed to send verification",
-					description: err.message,
-					variant: "destructive",
-				});
-			},
-			onSuccess() {
-				toast({
-					title: "Verification message has been sent",
-					description: "Please check your inbox!",
-				});
-			},
-			onSettled() {
-				queryClient.invalidateQueries({ queryKey: ["auth"] });
-				triggerAuth();
-			},
+			...createMutationOptions("Your account has been verified!"),
 		});
 
 	// state management of reset password
@@ -189,23 +129,7 @@ export const useGlobalContextState = () => {
 			});
 			return resetPassword(data);
 		},
-		onError(err) {
-			toast({
-				title: "Failed to send reset password link",
-				description: err.message,
-				variant: "destructive",
-			});
-		},
-		onSuccess() {
-			toast({
-				title: "Reset password link has been sent",
-				description: "Please check your inbox!",
-			});
-		},
-		onSettled() {
-			queryClient.invalidateQueries({ queryKey: ["auth"] });
-			triggerAuth();
-		},
+		...createMutationOptions("Your password has been reset!"),
 	});
 
 	// state management of update password
@@ -217,23 +141,7 @@ export const useGlobalContextState = () => {
 			});
 			return onUpdatePassword(data);
 		},
-		onError(err) {
-			toast({
-				title: "Failed to send verification",
-				description: err.message,
-				variant: "destructive",
-			});
-		},
-		onSuccess() {
-			toast({
-				title: "Verification message has been sent",
-				description: "Please check your inbox!",
-			});
-		},
-		onSettled() {
-			queryClient.invalidateQueries({ queryKey: ["auth"] });
-			triggerAuth();
-		},
+		...createMutationOptions("Your password has been updated!"),
 	});
 
 	return {
