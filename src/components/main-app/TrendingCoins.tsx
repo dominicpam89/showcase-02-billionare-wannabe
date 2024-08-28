@@ -25,7 +25,7 @@ export default function TrendingCoins() {
 	return (
 		<div
 			aria-label="list-trending"
-			className="min-w-[320px] lg:min-w-[480px] flex flex-col gap-6"
+			className="min-w-[280px] lg:min-w-[320px] flex flex-col gap-6"
 		>
 			{isError && (
 				<ErrorUI
