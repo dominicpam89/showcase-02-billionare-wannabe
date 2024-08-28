@@ -1,8 +1,12 @@
 import { PropsWithChildren } from "react";
 
-export default function FormRow({ children }: PropsWithChildren) {
+interface Props {
+	children: React.ReactNode;
+	twClasses?: string;
+}
+export default function FormRow({ children, twClasses = "" }: Props) {
 	return (
-		<div aria-label="form-row" className="w-full flex gap-3">
+		<div aria-label="form-row" className={`w-full flex gap-3 ${twClasses}`}>
 			{children}
 		</div>
 	);

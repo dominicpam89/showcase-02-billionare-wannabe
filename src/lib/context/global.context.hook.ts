@@ -7,6 +7,7 @@ import {
 	resendVerification,
 	resetPassword,
 	onUpdatePassword,
+	onUpdateProfile,
 } from "@/lib/services/auth";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase.config";
@@ -144,6 +145,18 @@ export const useGlobalContextState = () => {
 		...createMutationOptions("Your password has been updated!"),
 	});
 
+	// state management of update profile
+	const { mutate: updateProfile, ...updateProfileState } = useMutation({
+		mutationFn: (data: { displayName: string; photo: File | undefined }) => {
+			toast({
+				title: "Updating your profile",
+				description: "Please wait while we are processing your request",
+			});
+			return onUpdateProfile(data);
+		},
+		...createMutationOptions("Your profile has been updated!"),
+	});
+
 	return {
 		mainState,
 		currentUser,
@@ -154,6 +167,7 @@ export const useGlobalContextState = () => {
 		onResendVerification,
 		onResetPassword,
 		updatePassword,
+		updateProfile,
 		logout,
 		loginState,
 		logoutState,
@@ -162,6 +176,7 @@ export const useGlobalContextState = () => {
 		resendVerificationState,
 		resetPasswordState,
 		updatePasswordState,
+		updateProfileState,
 	};
 };
 export type GlobalContextState = ReturnType<typeof useGlobalContextState>;

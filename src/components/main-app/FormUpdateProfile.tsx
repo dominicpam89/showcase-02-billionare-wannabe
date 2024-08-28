@@ -1,12 +1,7 @@
 import { FormUpdateProfileSchema } from "@/lib/definition/profile";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import InputGroup from "../common/InputGroup";
-import {
-	nameRules,
-	emailRules,
-	passRules,
-	newPassRules,
-} from "./FormUpdateProfile.helper";
+import { nameRules } from "./FormUpdateProfile.helper";
 import InputGroupFile from "../common/InputGroupImage";
 import { FileArchiveIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,18 +10,23 @@ import LogoutConfirmation from "@/components/common/LogoutConfirmation";
 import { useContextGlobal } from "@/lib/hooks/useContextGlobal";
 
 export default function FormUpdateProfile() {
-	const { logoutState, currentUser } = useContextGlobal();
-	const disabled = logoutState.isPending;
+	const { logoutState, currentUser, updateProfile, updateProfileState } =
+		useContextGlobal();
+	const disabled = logoutState.isPending || updateProfileState.isPending;
 	const methods = useForm<FormUpdateProfileSchema>({
 		mode: "onBlur",
 		reValidateMode: "onChange",
 		defaultValues: {
 			name: currentUser?.displayName || "",
-			email: currentUser?.email || "",
 		},
 	});
+
 	const onValid: SubmitHandler<FormUpdateProfileSchema> = (data) => {
-		console.log(data);
+		updateProfile({
+			displayName: data.name,
+			photo: data.photo,
+		});
+		methods.resetField("photo");
 	};
 	return (
 		<FormProvider {...methods}>
@@ -41,34 +41,6 @@ export default function FormUpdateProfile() {
 					rules={nameRules}
 					disabled={disabled}
 				/>
-				<InputGroup<FormUpdateProfileSchema>
-					name="email"
-					placeholder=""
-					label="Email"
-					rules={emailRules}
-					disabled={disabled}
-				/>
-				<InputGroup<FormUpdateProfileSchema>
-					name="password.old"
-					placeholder=""
-					label="Old Password"
-					rules={passRules}
-					disabled={disabled}
-				/>
-				<InputGroup<FormUpdateProfileSchema>
-					name="password.new"
-					placeholder=""
-					label="New Password"
-					rules={newPassRules}
-					disabled={disabled}
-				/>
-				<InputGroup<FormUpdateProfileSchema>
-					name="password.confirm"
-					placeholder=""
-					label="Confirm Password"
-					rules={passRules}
-					disabled={disabled}
-				/>
 				<InputGroupFile<FormUpdateProfileSchema>
 					name="photo"
 					buttonText="Your Picture, your grace!"
@@ -78,7 +50,7 @@ export default function FormUpdateProfile() {
 				/>
 				<FormRow>
 					{/* Custom component to confirm user of logging out */}
-					<LogoutConfirmation />
+					<LogoutConfirmation disabled={disabled} />
 					<Button type="submit" className="w-full" disabled={disabled}>
 						Edit Profile!
 					</Button>

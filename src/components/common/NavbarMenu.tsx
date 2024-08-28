@@ -9,6 +9,7 @@ import {
 import { MenuIcon } from "lucide-react";
 import FormUpdateProfile from "../main-app/FormUpdateProfile";
 import { useState } from "react";
+import UserAvatar from "./UserAvatar";
 
 export default function NavbarMenu() {
 	const [open, setOpen] = useState(false);
@@ -20,9 +21,10 @@ export default function NavbarMenu() {
 			</SheetTrigger>
 			<SheetContent className="flex flex-col gap-8 overflow-scroll p-8">
 				<SheetHeader>
+					<UserAvatar />
 					<SheetTitle>Edit Your Profile</SheetTitle>
 					<SheetDescription>
-						You can edit your profile, or change your password
+						You can edit your profile as you wish your grace!
 					</SheetDescription>
 				</SheetHeader>
 				{/* Form update profile as main content */}

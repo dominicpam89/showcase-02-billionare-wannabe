@@ -10,12 +10,21 @@ import { Button } from "@/components/ui/button";
 import { LogOutIcon } from "lucide-react";
 import { useContextGlobal } from "@/lib/hooks/useContextGlobal";
 
-export default function LogoutConfirmation() {
+export default function LogoutConfirmation({
+	disabled,
+}: {
+	disabled: boolean;
+}) {
 	const { logout, logoutState } = useContextGlobal();
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button className="w-full " variant="outline" type="button">
+				<Button
+					className="w-full "
+					variant="outline"
+					type="button"
+					disabled={disabled}
+				>
 					<LogOutIcon className="size-3 mr-2" />
 					<span>Logout</span>
 				</Button>

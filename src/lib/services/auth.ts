@@ -9,8 +9,10 @@ import {
 	UserCredential,
 	User,
 	updatePassword,
+	updateEmail,
 } from "firebase/auth";
-import { auth } from "@/lib/firebase.config";
+import { auth, storage } from "@/lib/firebase.config";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 // let GoogleAuthProvider to handle authentication
 const provider = new GoogleAuthProvider();
@@ -96,6 +98,29 @@ export async function onUpdatePassword({ newPass }: { newPass: string }) {
 		if (!currentUser) throw new Error("No user currently signed in!");
 		await updatePassword(currentUser, newPass);
 		return { status: true, message: "Your password has been updated" };
+	} catch (error) {
+		console.error(error);
+		throw error as Error;
+	}
+}
+
+export async function onUpdateProfile({
+	displayName,
+	photo,
+}: {
+	displayName: string;
+	photo: File | undefined;
+}) {
+	const user = auth.currentUser;
+	if (!user) throw new Error("No user is currently active");
+	try {
+		await updateProfile(user, { displayName });
+		if (photo) {
+			const imageRef = ref(storage, `/showcase-2/users/${photo.name}`);
+			await uploadBytes(imageRef, photo);
+			const imageURL = await getDownloadURL(imageRef);
+			await updateProfile(user, { photoURL: imageURL });
+		}
 	} catch (error) {
 		console.error(error);
 		throw error as Error;
