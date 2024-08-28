@@ -6,7 +6,7 @@ export class CoinGecko {
 		"x-cg-demo-api-key": this.APIkey,
 	};
 	constructor(
-		private rootUrl: string = import.meta.env.VITE_COIN_GECKO_PUBLIC_DEMO_API,
+		private rootUrl: string = "https://api.coingecko.com/api/v3/",
 		private APIkey: string = import.meta.env.VITE_COIN_GECKO_API_KEY
 	) {}
 
@@ -41,6 +41,19 @@ export class CoinGecko {
 	async getAllCoins() {
 		try {
 			const response = await fetch(this.rootUrl + "coins/list", {
+				headers: this.headers,
+				method: "GET",
+			});
+			const data = await response.json();
+			return data;
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async getCoin(coinId: string) {
+		try {
+			const response = await fetch(this.rootUrl + "coins/" + coinId, {
 				headers: this.headers,
 				method: "GET",
 			});

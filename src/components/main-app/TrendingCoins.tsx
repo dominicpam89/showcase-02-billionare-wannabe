@@ -18,7 +18,6 @@ import Categories from "./trending-coins/Categories";
 import NFTS from "./trending-coins/NFTS";
 
 export default function TrendingCoins() {
-	console.log("TrendingCoins.tsx is rendered");
 	const { coinGecko, useGetTrendingList } = useContextCoinGecko();
 	const { data, isLoading, error, isError, isSuccess, isFetched } =
 		useGetTrendingList(coinGecko);

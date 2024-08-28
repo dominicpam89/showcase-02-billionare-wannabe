@@ -30,3 +30,12 @@ export const useGetAllCoins = (coinGecko: CoinGecko) => {
 };
 // returning the function type, since the function would be used to be called later in the app
 export type UseGetAllCoins = typeof useGetAllCoins;
+
+export const useGetCoin = (coinGecko: CoinGecko, coinId: string) => {
+	const coinState = useQuery({
+		queryKey: ["coins", coinId],
+		queryFn: coinGecko.getCoin.bind(coinGecko, coinId),
+	});
+	return coinState;
+};
+export type UseGetCoin = typeof useGetCoin;

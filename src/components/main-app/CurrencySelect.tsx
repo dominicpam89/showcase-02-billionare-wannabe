@@ -11,7 +11,6 @@ import {
 import { useContextUserCurrency } from "@/lib/hooks/useContextUserCurrency";
 
 export default function CurrencySelect() {
-	console.log("CurrencySelect.tsx is rendered");
 	const { currencies, currentCurrency, onChangeCurrentCurrency } =
 		useContextUserCurrency();
 	return (
