@@ -17,7 +17,6 @@ export default function ChartItem() {
 		);
 	return (
 		<div aria-label="list-all" className="flex flex-col gap-6 w-full">
-			<div>Filter & SearchBar</div>
 			{isCoin(selected) && <ChartCoin />}
 			{isCategory(selected) && <TableCategory />}
 			{isNFT(selected) && <ChartNFT />}

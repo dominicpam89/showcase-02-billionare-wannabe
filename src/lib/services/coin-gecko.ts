@@ -1,4 +1,5 @@
 import { ApiResponseTrendingCoins } from "@/lib/definition/trending-coins.type";
+import { ApiResponseCoinType } from "../definition/coin.type";
 
 export class CoinGecko {
 	private headers: HeadersInit = {
@@ -58,7 +59,7 @@ export class CoinGecko {
 				method: "GET",
 			});
 			const data = await response.json();
-			return data;
+			return data as ApiResponseCoinType;
 		} catch (error) {
 			throw error;
 		}
