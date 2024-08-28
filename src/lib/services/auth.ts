@@ -9,7 +9,6 @@ import {
 	UserCredential,
 	User,
 	updatePassword,
-	updateEmail,
 } from "firebase/auth";
 import { auth, storage } from "@/lib/firebase.config";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";

@@ -20,6 +20,7 @@ export default function LogoutConfirmation({
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button
+					aria-label="button-logout"
 					className="w-full "
 					variant="outline"
 					type="button"
@@ -29,8 +30,8 @@ export default function LogoutConfirmation({
 					<span>Logout</span>
 				</Button>
 			</DialogTrigger>
-			<DialogContent>
-				<DialogHeader>
+			<DialogContent aria-label="logout-confirmation-dialog">
+				<DialogHeader aria-label="header">
 					<DialogTitle>Are you absolutely sure?</DialogTitle>
 					<DialogDescription>
 						You will be logged out from this application! Meaning you're
@@ -38,6 +39,7 @@ export default function LogoutConfirmation({
 					</DialogDescription>
 				</DialogHeader>
 				<Button
+					aria-label="confirm-button"
 					type="button"
 					variant="destructive"
 					onClick={() => logout()}

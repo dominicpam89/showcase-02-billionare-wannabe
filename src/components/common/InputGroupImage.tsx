@@ -42,6 +42,7 @@ export default function InputGroupFile<T extends FieldValues>({
 	return (
 		<div aria-label="input-group" className="flex flex-col gap-2">
 			<Input
+				aria-label="real-input"
 				{...register(name, rules)}
 				ref={inputImageRef}
 				className="hidden"

@@ -31,6 +31,7 @@ export default function FormUpdateProfile() {
 	return (
 		<FormProvider {...methods}>
 			<form
+				aria-label="form-update-profile"
 				onSubmit={methods.handleSubmit(onValid)}
 				className="flex flex-col gap-6"
 			>

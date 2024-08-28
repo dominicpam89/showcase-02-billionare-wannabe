@@ -16,14 +16,17 @@ export default function NavbarMenu() {
 	const onOpenChange = (o: boolean) => setOpen(o);
 	return (
 		<Sheet open={open} onOpenChange={onOpenChange}>
-			<SheetTrigger>
+			<SheetTrigger aria-label="button-trigger">
 				<MenuIcon className="size-6" />
 			</SheetTrigger>
-			<SheetContent className="flex flex-col gap-8 overflow-scroll p-8">
-				<SheetHeader>
+			<SheetContent
+				aria-label="sheet-content"
+				className="flex flex-col gap-8 overflow-scroll p-8"
+			>
+				<SheetHeader aria-label="header">
 					<UserAvatar />
-					<SheetTitle>Edit Your Profile</SheetTitle>
-					<SheetDescription>
+					<SheetTitle aria-label="title">Edit Your Profile</SheetTitle>
+					<SheetDescription aria-label="description">
 						You can edit your profile as you wish your grace!
 					</SheetDescription>
 				</SheetHeader>
