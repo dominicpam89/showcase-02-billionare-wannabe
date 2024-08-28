@@ -1,12 +1,5 @@
 import { useContextCoinGecko } from "@/lib/hooks/useCoinGecko";
 import ErrorUI from "../common/ErrorUI";
-
-// Create collapsible data from coins, categories, nfts
-// each and inside of coins, categories, and nfts, are table of content, and display necessary information
-// if clicked then it would open the view detail of item
-// if possible create context for managing UI (pages or tabs)
-// add skeleton for list coins when loading
-
 import {
 	Accordion,
 	AccordionContent,

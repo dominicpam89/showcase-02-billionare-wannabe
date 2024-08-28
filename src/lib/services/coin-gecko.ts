@@ -4,12 +4,9 @@ import { ApiResponseCoinType } from "../definition/coin.type";
 export class CoinGecko {
 	private headers: HeadersInit = {
 		"accept": "application/json",
-		"x-cg-demo-api-key": this.APIkey,
+		"x-cg-demo-api-key": import.meta.env.VITE_COIN_GECKO_API_KEY,
 	};
-	constructor(
-		private rootUrl: string = "https://api.coingecko.com/api/v3/",
-		private APIkey: string = import.meta.env.VITE_COIN_GECKO_API_KEY
-	) {}
+	constructor(private rootUrl: string = "https://api.coingecko.com/api/v3/") {}
 
 	async Ping() {
 		try {
