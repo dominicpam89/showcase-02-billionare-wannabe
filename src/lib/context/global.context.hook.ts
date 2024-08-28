@@ -6,6 +6,7 @@ import {
 	authRegister,
 	resendVerification,
 	resetPassword,
+	onUpdatePassword,
 } from "@/lib/services/auth";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase.config";
@@ -179,6 +180,7 @@ export const useGlobalContextState = () => {
 			},
 		});
 
+	// state management of reset password
 	const { mutate: onResetPassword, ...resetPasswordState } = useMutation({
 		mutationFn: (data: { email: string }) => {
 			toast({
@@ -206,6 +208,34 @@ export const useGlobalContextState = () => {
 		},
 	});
 
+	// state management of update password
+	const { mutate: updatePassword, ...updatePasswordState } = useMutation({
+		mutationFn: (data: { newPass: string }) => {
+			toast({
+				title: "Updating your password",
+				description: "Please wait while we are processing your request",
+			});
+			return onUpdatePassword(data);
+		},
+		onError(err) {
+			toast({
+				title: "Failed to send verification",
+				description: err.message,
+				variant: "destructive",
+			});
+		},
+		onSuccess() {
+			toast({
+				title: "Verification message has been sent",
+				description: "Please check your inbox!",
+			});
+		},
+		onSettled() {
+			queryClient.invalidateQueries({ queryKey: ["auth"] });
+			triggerAuth();
+		},
+	});
+
 	return {
 		mainState,
 		currentUser,
@@ -215,6 +245,7 @@ export const useGlobalContextState = () => {
 		loginGoogle,
 		onResendVerification,
 		onResetPassword,
+		updatePassword,
 		logout,
 		loginState,
 		logoutState,
@@ -222,6 +253,7 @@ export const useGlobalContextState = () => {
 		loginWithEmailState,
 		resendVerificationState,
 		resetPasswordState,
+		updatePasswordState,
 	};
 };
 export type GlobalContextState = ReturnType<typeof useGlobalContextState>;

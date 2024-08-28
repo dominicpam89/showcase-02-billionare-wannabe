@@ -8,6 +8,7 @@ import {
 	updateProfile,
 	UserCredential,
 	User,
+	updatePassword,
 } from "firebase/auth";
 import { auth } from "@/lib/firebase.config";
 
@@ -83,6 +84,18 @@ export async function resetPassword({ email }: { email: string }) {
 	try {
 		await sendPasswordResetEmail(auth, email);
 		return { status: true, message: "Reset password link sent" };
+	} catch (error) {
+		console.error(error);
+		throw error as Error;
+	}
+}
+
+export async function onUpdatePassword({ newPass }: { newPass: string }) {
+	try {
+		const currentUser = auth.currentUser;
+		if (!currentUser) throw new Error("No user currently signed in!");
+		await updatePassword(currentUser, newPass);
+		return { status: true, message: "Your password has been updated" };
 	} catch (error) {
 		console.error(error);
 		throw error as Error;

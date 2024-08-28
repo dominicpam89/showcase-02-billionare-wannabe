@@ -15,11 +15,15 @@ import LogoutConfirmation from "@/components/common/LogoutConfirmation";
 import { useContextGlobal } from "@/lib/hooks/useContextGlobal";
 
 export default function FormUpdateProfile() {
-	const { logoutState } = useContextGlobal();
+	const { logoutState, currentUser } = useContextGlobal();
 	const disabled = logoutState.isPending;
 	const methods = useForm<FormUpdateProfileSchema>({
 		mode: "onBlur",
 		reValidateMode: "onChange",
+		defaultValues: {
+			name: currentUser?.displayName || "",
+			email: currentUser?.email || "",
+		},
 	});
 	const onValid: SubmitHandler<FormUpdateProfileSchema> = (data) => {
 		console.log(data);
