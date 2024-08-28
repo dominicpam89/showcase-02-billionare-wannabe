@@ -9,10 +9,18 @@ interface Props {
 	data: ApiResponseTrendingCoins["nfts"];
 }
 export default function NFTS({ data }: Props) {
-	const { onSelectItem } = useContextAssetSelect();
+	const { onSelectItem, isNFT, selected } = useContextAssetSelect();
 	const handleNftSelect = useCallback(
 		(nft: Nft) => () => onSelectItem(nft),
 		[onSelectItem]
+	);
+	const isSelected = useCallback(
+		(nft: Nft) => {
+			if (isNFT(selected)) {
+				return selected.id == nft.id;
+			} else return false;
+		},
+		[isNFT, selected]
 	);
 	return (
 		<Container>
@@ -21,6 +29,7 @@ export default function NFTS({ data }: Props) {
 					<ItemContainer
 						key={nft.id}
 						isLastIndex={index == data.length - 1}
+						isSelected={isSelected(nft)}
 						label="nft-container"
 						onClick={handleNftSelect(nft)}
 					>

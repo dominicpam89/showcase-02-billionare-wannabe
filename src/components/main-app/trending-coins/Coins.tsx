@@ -9,10 +9,18 @@ interface Props {
 	data: ApiResponseTrendingCoins["coins"];
 }
 export default function Coins({ data }: Props) {
-	const { onSelectItem } = useContextAssetSelect();
+	const { onSelectItem, isCoin, selected } = useContextAssetSelect();
 	const handleCoinSelect = useCallback(
 		(coin: Coin) => () => onSelectItem(coin),
 		[onSelectItem]
+	);
+	const isSelected = useCallback(
+		(coin: Coin) => {
+			if (isCoin(selected)) {
+				return selected.item.id == coin.item.id;
+			} else return false;
+		},
+		[isCoin, selected]
 	);
 	return (
 		<Container>
@@ -21,6 +29,7 @@ export default function Coins({ data }: Props) {
 					<ItemContainer
 						key={coin.item.id}
 						isLastIndex={index == data.length - 1}
+						isSelected={isSelected(coin)}
 						label="coin-container"
 						onClick={handleCoinSelect(coin)}
 					>

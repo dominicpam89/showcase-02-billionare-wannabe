@@ -9,10 +9,18 @@ interface Props {
 	data: ApiResponseTrendingCoins["categories"];
 }
 export default function Categories({ data }: Props) {
-	const { onSelectItem } = useContextAssetSelect();
+	const { onSelectItem, selected, isCategory } = useContextAssetSelect();
 	const handleCategorySelect = useCallback(
 		(c: Category) => () => onSelectItem(c),
 		[onSelectItem]
+	);
+	const isSelected = useCallback(
+		(category: Category) => {
+			if (isCategory(selected)) {
+				return selected.id == category.id;
+			} else return false;
+		},
+		[isCategory, selected]
 	);
 	return (
 		<Container>
@@ -21,6 +29,7 @@ export default function Categories({ data }: Props) {
 					<ItemContainer
 						key={category.id}
 						isLastIndex={index == data.length - 1}
+						isSelected={isSelected(category)}
 						label="category-container"
 						onClick={handleCategorySelect(category)}
 					>

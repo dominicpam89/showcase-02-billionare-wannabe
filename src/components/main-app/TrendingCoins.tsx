@@ -1,4 +1,4 @@
-import { useCoinGecko } from "@/lib/hooks/useCoinGecko";
+import { useContextCoinGecko } from "@/lib/hooks/useCoinGecko";
 import ErrorUI from "../common/ErrorUI";
 
 // Create collapsible data from coins, categories, nfts
@@ -18,7 +18,7 @@ import Categories from "./trending-coins/Categories";
 import NFTS from "./trending-coins/NFTS";
 
 export default function TrendingCoins() {
-	const { coinGecko, useGetTrendingList } = useCoinGecko();
+	const { coinGecko, useGetTrendingList } = useContextCoinGecko();
 	const { data, isLoading, error, isError, isSuccess, isFetched } =
 		useGetTrendingList(coinGecko);
 	if (isLoading) return <>Temporary loading UI</>;
