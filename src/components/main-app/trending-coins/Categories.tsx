@@ -1,18 +1,28 @@
 import { ApiResponseTrendingCoins } from "@/lib/definition/trending-coins.type";
 import Container from "./Container";
 import ItemContainer from "./ItemContainer";
+import { useContextAssetSelect } from "@/lib/hooks/useAssetSelect";
+import { Category } from "@/lib/context/select-asset.context.type";
+import { useCallback } from "react";
 
 interface Props {
 	data: ApiResponseTrendingCoins["categories"];
 }
 export default function Categories({ data }: Props) {
+	const { onSelectItem } = useContextAssetSelect();
+	const handleCategorySelect = useCallback(
+		(c: Category) => () => onSelectItem(c),
+		[onSelectItem]
+	);
 	return (
 		<Container>
 			{data.map((category, index) => {
 				return (
 					<ItemContainer
+						key={category.id}
 						isLastIndex={index == data.length - 1}
 						label="category-container"
+						onClick={handleCategorySelect(category)}
 					>
 						<div
 							aria-label="category-item"
