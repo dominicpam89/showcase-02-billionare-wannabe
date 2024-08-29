@@ -18,7 +18,7 @@ export default function TrendingCoins() {
 	return (
 		<div
 			aria-label="list-trending"
-			className="min-w-[280px] lg:min-w-[320px] flex flex-col gap-6"
+			className="min-w-[240px] lg:min-w-[320px] flex flex-col gap-6"
 		>
 			{isError && (
 				<ErrorUI
@@ -29,7 +29,7 @@ export default function TrendingCoins() {
 			{isFetched && isSuccess && (
 				<Accordion type="single" collapsible>
 					<AccordionItem value="coins">
-						<AccordionTrigger>Coins</AccordionTrigger>
+						<AccordionTrigger>Trending Coins</AccordionTrigger>
 						<AccordionContent>
 							<Coins data={data.coins} />
 						</AccordionContent>
