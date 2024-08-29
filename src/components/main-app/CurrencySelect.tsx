@@ -19,7 +19,7 @@ export default function CurrencySelect() {
 				<Button variant="outline">{currentCurrency}</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className="w-56">
-				<DropdownMenuLabel>Base Currency</DropdownMenuLabel>
+				<DropdownMenuLabel>Coins base currency</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<DropdownMenuRadioGroup
 					value={currentCurrency}

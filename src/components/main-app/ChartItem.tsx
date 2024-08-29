@@ -26,7 +26,7 @@ export default function ChartItem() {
 		<div
 			ref={ref}
 			aria-label="list-all"
-			className="flex flex-col gap-6 w-full"
+			className="p-8 md:p-0 flex flex-col gap-6 w-full"
 		>
 			{isCoin(selected) && <ChartCoin />}
 			{isCategory(selected) && <TableCategory />}
