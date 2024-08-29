@@ -14,6 +14,7 @@ import BodyHeaderItem from "../chart-item-ui/BodyHeaderItem";
 import { TrendingUp as UpTrend, TrendingDown as DownTrend } from "lucide-react";
 import { formatCurrency, formatFractions } from "@/lib/utils";
 import BodyContent from "../chart-item-ui/BodyContent";
+import CoinChart from "./CoinChart";
 
 export default function ChartCoin() {
 	// selected asset
@@ -45,6 +46,12 @@ export default function ChartCoin() {
 		data!.market_data.price_change_percentage_24h_in_currency[
 			currentCurrency
 		];
+
+	console.log(data);
+	const sentiment = {
+		sentimentVoteDown: data!.sentiment_votes_down_percentage,
+		sentimentVoteUp: data!.sentiment_votes_up_percentage,
+	};
 	return (
 		<MainItemContainer>
 			<MainItemHeader>
@@ -71,9 +78,30 @@ export default function ChartCoin() {
 					/>
 				</BodyHeader>
 				<BodyContent
-					monthlyChart={<h1>MonthlyChart</h1>}
-					dailyChart={<h1>DailyChart</h1>}
-					hourlyChart={<h1>HourlyChart</h1>}
+					monthlyChart={
+						<CoinChart
+							coinId={data!.id}
+							currency={currentCurrency}
+							timeframe="monthly"
+							sentiment={sentiment}
+						/>
+					}
+					dailyChart={
+						<CoinChart
+							coinId={data!.id}
+							currency={currentCurrency}
+							timeframe="daily"
+							sentiment={sentiment}
+						/>
+					}
+					hourlyChart={
+						<CoinChart
+							coinId={data!.id}
+							currency={currentCurrency}
+							timeframe="hourly"
+							sentiment={sentiment}
+						/>
+					}
 				/>
 			</MainItemBody>
 		</MainItemContainer>

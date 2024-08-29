@@ -33,7 +33,7 @@ export type UseGetAllCoins = typeof useGetAllCoins;
 
 export const useGetCoin = (coinGecko: CoinGecko, coinId: string) => {
 	const coinState = useQuery({
-		queryKey: ["coins", coinId],
+		queryKey: ["coin", coinId],
 		queryFn: coinGecko.getCoin.bind(coinGecko, coinId),
 	});
 	return coinState;
@@ -47,14 +47,13 @@ export const useGetCoinChartData = (
 	timeFrame: keyof MarketChartTimeFramesQuery
 ) => {
 	const coinChartState = useQuery({
-		queryKey: ["coins", coinId, "chart"],
-		queryFn: () =>
-			coinGecko.getCoinMarketChart.call(
-				coinGecko,
-				coinId,
-				currency,
-				timeFrame
-			),
+		queryKey: ["coin", coinId, "chart"],
+		queryFn: coinGecko.getCoinMarketChart.bind(
+			coinGecko,
+			coinId,
+			currency,
+			timeFrame
+		),
 	});
 	return coinChartState;
 };

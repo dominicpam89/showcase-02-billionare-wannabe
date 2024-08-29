@@ -7,11 +7,7 @@ export class CoinGecko {
 		"accept": "application/json",
 		"x-cg-demo-api-key": import.meta.env.VITE_COIN_GECKO_API_KEY,
 	};
-	private marketChartTimeFramesQuery: MarketChartTimeFramesQuery = {
-		monthly: "days=365",
-		daily: "days=30",
-		hourly: "days=1&interval=hourly",
-	};
+
 	constructor(private rootUrl: string = "https://api.coingecko.com/api/v3/") {}
 
 	async Ping() {
@@ -73,20 +69,24 @@ export class CoinGecko {
 		currency: UserCurrency,
 		timeframe: keyof MarketChartTimeFramesQuery
 	) {
+		// https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1
+		const daysQuery = this.getDaysQuery(timeframe);
 		try {
 			const response = await fetch(
-				this.rootUrl +
-					"coins/" +
-					coinId +
-					"/market_chart?vs_currency=" +
-					currency +
-					"&days=" +
-					this.marketChartTimeFramesQuery[timeframe]
+				`${this.rootUrl}coins/${coinId}/market_chart/?vs_currency=${currency}&${daysQuery}`,
+				{ headers: this.headers, method: "GET" }
 			);
 			const data = await response.json();
 			return data as ApiResponseCoinMarketChart;
 		} catch (error) {
 			throw error;
 		}
+	}
+
+	// days=1&interval=daily
+	getDaysQuery(timeframe: keyof MarketChartTimeFramesQuery) {
+		if (timeframe == "monthly") return "days=96";
+		else if (timeframe == "daily") return "days=48";
+		else return "days=24";
 	}
 }
