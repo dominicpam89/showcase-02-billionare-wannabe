@@ -85,8 +85,8 @@ export class CoinGecko {
 
 	// days=1&interval=daily
 	getDaysQuery(timeframe: keyof MarketChartTimeFramesQuery) {
-		if (timeframe == "monthly") return "days=96";
-		else if (timeframe == "daily") return "days=48";
-		else return "days=24";
+		if (timeframe == "monthly") return "days=128";
+		else if (timeframe == "daily") return "days=92";
+		else return "days=36";
 	}
 }

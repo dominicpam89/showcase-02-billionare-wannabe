@@ -11,12 +11,12 @@ import { useContextUserCurrency } from "@/lib/hooks/useContextUserCurrency";
 import MainItemBody from "../chart-item-coin/MainItemBody";
 import BodyHeader from "../chart-item-coin/BodyHeader";
 import BodyHeaderItem from "../chart-item-coin/BodyHeaderItem";
-import { TrendingUp as UpTrend, TrendingDown as DownTrend } from "lucide-react";
 import { formatCurrency, formatFractions } from "@/lib/utils";
 import BodyContent from "../chart-item-coin/BodyContent";
 import CoinChart from "./CoinChart";
 import ErrorUI from "@/components/common/ErrorUI";
 import CoinLoading from "./Coin.loading";
+import PriceChange from "../chart-item-coin/PriceChange";
 
 export default function ChartCoin() {
 	// selected asset
@@ -83,7 +83,7 @@ export default function ChartCoin() {
 					/>
 					<BodyHeaderItem title="Market Cap" description={marketCap} />
 					<BodyHeaderItem
-						title={priceChange > 0 ? <UpTrend /> : <DownTrend />}
+						title={<PriceChange priceChange={priceChange} />}
 						description={formatFractions(priceChange, 2, 4) + " %"}
 						descriptionColor={priceChange > 0 ? "green" : "destructive"}
 					/>

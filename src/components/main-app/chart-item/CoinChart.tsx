@@ -16,6 +16,8 @@ import {
 	ChartTooltipContent,
 } from "@/components/ui/chart";
 import { useContextCoinGecko } from "@/lib/hooks/useCoinGecko";
+import CoinChartLoading from "./CoinChart.loading";
+import ErrorUI from "@/components/common/ErrorUI";
 
 const chartConfig = {
 	price: {
@@ -40,21 +42,28 @@ export default function CoinChart({
 	sentiment,
 }: Props) {
 	const { coinGecko, useGetCoinChartData } = useContextCoinGecko();
-	const { data, isLoading, isError, error } = useGetCoinChartData(
+	const { data, isLoading, isError, error, refetch } = useGetCoinChartData(
 		coinGecko,
 		coinId,
 		currency,
 		timeframe
 	);
-	if (isLoading) return <p>...loading</p>;
-	if (isError) return <p>error: {error.message}</p>;
+	if (isLoading) return <CoinChartLoading />;
+	if (isError)
+		return (
+			<ErrorUI
+				title="Couldn't load chart"
+				message={error.message}
+				refetch={refetch}
+			/>
+		);
 
 	// if data is ready
 	const chartData = data?.prices.map(([timestamp, price]) => {
 		return { timestamp, price };
 	});
 	return (
-		<Card>
+		<Card className="max-sm:mt-8">
 			<CardHeader>
 				<CardTitle></CardTitle>
 				<CardDescription></CardDescription>
@@ -89,7 +98,7 @@ export default function CoinChart({
 					</LineChart>
 				</ChartContainer>
 			</CardContent>
-			<CardFooter className="flex flex-col gap-4 items-center justify-center text-sm">
+			<CardFooter className="flex max-sm:flex-col gap-4 lg:gap-10 items-center justify-center text-sm">
 				<div className="flex gap-2 items-center">
 					<span className="text-xs">Sentiment to Buy</span>
 					<TrendingUp className="text-emerald-500" />

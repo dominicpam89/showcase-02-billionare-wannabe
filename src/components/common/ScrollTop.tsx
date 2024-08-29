@@ -9,7 +9,6 @@ export default function ScrollTop() {
 	const { scrollY } = useScroll();
 	const opacity = useTransform(scrollY, [0, screenHeight], [0, 1]);
 	const translateY = useTransform(scrollY, [0, screenHeight], [200, 0]);
-	console.log(opacity);
 	return (
 		<motion.div
 			style={{ opacity, translateY }}

@@ -17,7 +17,7 @@ export default function BodyHeaderItem({
 }: Props) {
 	const descClass =
 		descriptionColor == "destructive"
-			? "text-destructive"
+			? "text-rose-800 dark:text-rose-400"
 			: descriptionColor == "green"
 			? "text-emerald-700 dark:text-emerald-300"
 			: "";

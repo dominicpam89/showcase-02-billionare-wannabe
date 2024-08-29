@@ -16,7 +16,7 @@ export default function BodyContent({
 				aria-label="tab-list"
 				className="w-full grid grid-cols-3 h-12 px-2 bg-emerald-200/80 text-gray-800 dark:bg-emerald-800/30 dark:text-gray-100"
 			>
-				<TabsTrigger value="monthly">M1</TabsTrigger>
+				<TabsTrigger value="monthly">Month</TabsTrigger>
 				<TabsTrigger value="daily">D1</TabsTrigger>
 				<TabsTrigger value="hourly">H1</TabsTrigger>
 			</TabsList>
