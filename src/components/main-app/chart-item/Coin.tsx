@@ -1,19 +1,19 @@
 import { Coin } from "@/lib/context/select-asset.context.type";
 import { useContextAssetSelect } from "@/lib/hooks/useAssetSelect";
 import { useContextCoinGecko } from "@/lib/hooks/useCoinGecko";
-import MainItemContainer from "../chart-item-ui/MainItemContainer";
-import MainItemHeader from "../chart-item-ui/MainItemHeader";
-import HeaderImage from "../chart-item-ui/HeaderImage";
-import HeaderText from "../chart-item-ui/HeaderText";
-import HeaderTitle from "../chart-item-ui/HeaderTitle";
-import HeaderDescription from "../chart-item-ui/HeaderDescription";
+import MainItemContainer from "../chart-item-coin/MainItemContainer";
+import MainItemHeader from "../chart-item-coin/MainItemHeader";
+import HeaderImage from "../chart-item-coin/HeaderImage";
+import HeaderText from "../chart-item-coin/HeaderText";
+import HeaderTitle from "../chart-item-coin/HeaderTitle";
+import HeaderDescription from "../chart-item-coin/HeaderDescription";
 import { useContextUserCurrency } from "@/lib/hooks/useContextUserCurrency";
-import MainItemBody from "../chart-item-ui/MainItemBody";
-import BodyHeader from "../chart-item-ui/BodyHeader";
-import BodyHeaderItem from "../chart-item-ui/BodyHeaderItem";
+import MainItemBody from "../chart-item-coin/MainItemBody";
+import BodyHeader from "../chart-item-coin/BodyHeader";
+import BodyHeaderItem from "../chart-item-coin/BodyHeaderItem";
 import { TrendingUp as UpTrend, TrendingDown as DownTrend } from "lucide-react";
 import { formatCurrency, formatFractions } from "@/lib/utils";
-import BodyContent from "../chart-item-ui/BodyContent";
+import BodyContent from "../chart-item-coin/BodyContent";
 import CoinChart from "./CoinChart";
 
 export default function ChartCoin() {

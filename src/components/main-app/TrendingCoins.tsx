@@ -31,7 +31,7 @@ export default function TrendingCoins() {
 			{isFetched && isSuccess && (
 				<Accordion type="single" collapsible>
 					<AccordionItem value="coins">
-						<AccordionTrigger>Trending Coins</AccordionTrigger>
+						<AccordionTrigger>Coins</AccordionTrigger>
 						<AccordionContent>
 							<Coins data={data.coins} />
 						</AccordionContent>
