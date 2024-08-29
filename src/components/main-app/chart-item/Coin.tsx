@@ -47,7 +47,6 @@ export default function ChartCoin() {
 			currentCurrency
 		];
 
-	console.log(data);
 	const sentiment = {
 		sentimentVoteDown: data!.sentiment_votes_down_percentage,
 		sentimentVoteUp: data!.sentiment_votes_up_percentage,
