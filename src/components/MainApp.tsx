@@ -8,7 +8,7 @@ export default function MainApp() {
 			<Navbar />
 			<div
 				aria-label="main-app-container"
-				className="flex flex-col md:flex-row gap-8 w-full mt-[80px]"
+				className="flex flex-col md:flex-row gap-8 md:gap-16 w-full mt-[80px]"
 			>
 				<TrendingCoins />
 				<ChartItem />

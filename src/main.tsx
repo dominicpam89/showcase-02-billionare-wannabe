@@ -9,6 +9,7 @@ import { Toaster } from "@/components/ui/toaster";
 import ContextCoinGeckoProvider from "./lib/context/coingecko.context.tsx";
 import ContextAssetSelectProvider from "./lib/context/select-asset.context.tsx";
 import ContextUserCurrencyProvider from "./lib/context/user-currency.context.tsx";
+import { ThemeProvider } from "./lib/context/theme-provider.tsx";
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
@@ -17,7 +18,12 @@ createRoot(document.getElementById("root")!).render(
 				<ContextAssetSelectProvider>
 					<ContextUserCurrencyProvider>
 						<ContextCoinGeckoProvider>
-							<App />
+							<ThemeProvider
+								defaultTheme="dark"
+								storageKey="vite-ui-theme"
+							>
+								<App />
+							</ThemeProvider>
 						</ContextCoinGeckoProvider>
 					</ContextUserCurrencyProvider>
 				</ContextAssetSelectProvider>

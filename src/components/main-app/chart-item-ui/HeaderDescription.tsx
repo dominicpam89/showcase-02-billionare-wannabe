@@ -7,7 +7,7 @@ export default function HeaderDescription({ description }: Props) {
 	return (
 		<ScrollArea
 			aria-label="description"
-			className="h-full rounded-md text-sm"
+			className="h-full rounded-md text-sm tracking-wider leading-6"
 		>
 			{description}
 		</ScrollArea>

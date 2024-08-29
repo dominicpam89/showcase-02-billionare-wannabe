@@ -21,7 +21,7 @@ export default function ItemContainer({
 	return (
 		<motion.div
 			aria-label={label}
-			className={`p-4 cursor-pointer border-gray-200 hover:bg-gray-200 dark:hover:bg-gray-800 ${border} ${bgColor}`}
+			className={`p-4 cursor-pointer border-gray-200 hover:bg-gray-200 dark:border-gray-800 dark:hover:bg-gray-800 ${border} ${bgColor}`}
 			whileHover={{ x }}
 			{...props}
 		>

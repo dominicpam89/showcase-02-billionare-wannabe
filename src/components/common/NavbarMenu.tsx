@@ -9,7 +9,7 @@ import {
 import { MenuIcon } from "lucide-react";
 import FormUpdateProfile from "../main-app/FormUpdateProfile";
 import { useState } from "react";
-import UserAvatar from "./UserAvatar";
+import NavbarMenuUserInfo from "./NavbarMenuUserInfo";
 
 export default function NavbarMenu() {
 	const [open, setOpen] = useState(false);
@@ -24,7 +24,7 @@ export default function NavbarMenu() {
 				className="flex flex-col gap-8 overflow-scroll p-8"
 			>
 				<SheetHeader aria-label="header">
-					<UserAvatar />
+					<NavbarMenuUserInfo />
 					<SheetTitle aria-label="title">Edit Your Profile</SheetTitle>
 					<SheetDescription aria-label="description">
 						You can edit your profile as you wish your grace!
