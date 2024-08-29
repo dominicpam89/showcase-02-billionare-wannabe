@@ -5,10 +5,12 @@ import {
 	UseGetTrendingList,
 	UsePing,
 	UseGetCoin,
+	UseGetCoinChartData,
 	usePing,
 	useGetTrendingList,
 	useGetAllCoins,
 	useGetCoin,
+	useGetCoinChartData,
 } from "./coingecko.context.hook";
 
 export type ContextCoinGeckoType = {
@@ -17,6 +19,7 @@ export type ContextCoinGeckoType = {
 	useGetTrendingList: UseGetTrendingList;
 	useGetAllCoins: UseGetAllCoins;
 	useGetCoin: UseGetCoin;
+	useGetCoinChartData: UseGetCoinChartData;
 };
 export const ContextCoinGecko = createContext<ContextCoinGeckoType | {}>({});
 
@@ -33,6 +36,7 @@ export default function ContextCoinGeckoProvider({ children }: Props) {
 				useGetTrendingList,
 				useGetAllCoins,
 				useGetCoin,
+				useGetCoinChartData,
 			}}
 		>
 			{children}

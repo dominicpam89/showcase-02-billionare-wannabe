@@ -13,6 +13,7 @@ import BodyHeader from "../chart-item-ui/BodyHeader";
 import BodyHeaderItem from "../chart-item-ui/BodyHeaderItem";
 import { TrendingUp as UpTrend, TrendingDown as DownTrend } from "lucide-react";
 import { formatCurrency, formatFractions } from "@/lib/utils";
+import BodyContent from "../chart-item-ui/BodyContent";
 
 export default function ChartCoin() {
 	// selected asset
@@ -32,7 +33,6 @@ export default function ChartCoin() {
 	if (isLoading) return <p>Loading...</p>;
 
 	// If coin data does exist
-	console.log(data);
 	const currentPrice = formatCurrency(
 		data!.market_data.current_price[currentCurrency],
 		currentCurrency
@@ -70,6 +70,11 @@ export default function ChartCoin() {
 						descriptionColor={priceChange > 0 ? "green" : "destructive"}
 					/>
 				</BodyHeader>
+				<BodyContent
+					monthlyChart={<h1>MonthlyChart</h1>}
+					dailyChart={<h1>DailyChart</h1>}
+					hourlyChart={<h1>HourlyChart</h1>}
+				/>
 			</MainItemBody>
 		</MainItemContainer>
 	);
