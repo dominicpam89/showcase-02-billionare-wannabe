@@ -7,7 +7,7 @@ import {
 	AccordionTrigger,
 } from "@/components/ui/accordion";
 import Coins from "./trending-coins/Coins";
-import Categories from "./trending-coins/Categories";
+// import Categories from "./trending-coins/Categories";
 import NFTS from "./trending-coins/NFTS";
 import TrendingCoinsLoading from "./TrendingCoins.loading";
 
@@ -36,12 +36,12 @@ export default function TrendingCoins() {
 							<Coins data={data.coins} />
 						</AccordionContent>
 					</AccordionItem>
-					<AccordionItem value="categories">
+					{/* <AccordionItem value="categories">
 						<AccordionTrigger>Categories</AccordionTrigger>
 						<AccordionContent>
 							<Categories data={data.categories} />
 						</AccordionContent>
-					</AccordionItem>
+					</AccordionItem> */}
 					<AccordionItem value="nft">
 						<AccordionTrigger>NFTS</AccordionTrigger>
 						<AccordionContent>

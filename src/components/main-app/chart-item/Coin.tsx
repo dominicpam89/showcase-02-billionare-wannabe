@@ -15,6 +15,8 @@ import { TrendingUp as UpTrend, TrendingDown as DownTrend } from "lucide-react";
 import { formatCurrency, formatFractions } from "@/lib/utils";
 import BodyContent from "../chart-item-coin/BodyContent";
 import CoinChart from "./CoinChart";
+import ErrorUI from "@/components/common/ErrorUI";
+import CoinLoading from "./Coin.loading";
 
 export default function ChartCoin() {
 	// selected asset
@@ -25,13 +27,23 @@ export default function ChartCoin() {
 
 	// main data
 	const { coinGecko, useGetCoin } = useContextCoinGecko();
-	const { data, isLoading, isError, error } = useGetCoin(coinGecko, item.id);
+	const { data, isLoading, isError, error, refetch } = useGetCoin(
+		coinGecko,
+		item.id
+	);
 
 	// if coin data couldn't be retrieved
-	if (isError) return <p>Errors: {error.message}</p>;
+	if (isError)
+		return (
+			<ErrorUI
+				title="Couldn't get the graph for this coin"
+				message={error.message}
+				refetch={refetch}
+			/>
+		);
 
 	// while coin data is being fetched
-	if (isLoading) return <p>Loading...</p>;
+	if (isLoading) return <CoinLoading />;
 
 	// If coin data does exist
 	const currentPrice = formatCurrency(
