@@ -21,7 +21,7 @@ export default function NavbarMenu() {
 			</SheetTrigger>
 			<SheetContent
 				aria-label="sheet-content"
-				className="flex flex-col gap-8 p-8"
+				className="flex flex-col gap-8 p-8 z-[500]"
 			>
 				<SheetHeader aria-label="header">
 					<NavbarMenuUserInfo />

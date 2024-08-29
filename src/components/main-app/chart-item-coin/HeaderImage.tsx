@@ -5,7 +5,7 @@ export default function HeaderImage({ ...props }: Props) {
 	return (
 		<img
 			aria-label="header-image"
-			className="h-full w-full max-h-[80px] md:max-w-[200px]"
+			className="h-full w-full max-w-[200px] mx-auto"
 			{...props}
 		/>
 	);

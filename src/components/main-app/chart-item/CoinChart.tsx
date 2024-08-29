@@ -59,8 +59,8 @@ export default function CoinChart({
 				<CardTitle></CardTitle>
 				<CardDescription></CardDescription>
 			</CardHeader>
-			<CardContent>
-				<ChartContainer config={chartConfig}>
+			<CardContent aria-label="card-content" className="min-h-[320px]">
+				<ChartContainer config={chartConfig} className="w-full h-[320px]">
 					<LineChart
 						accessibilityLayer
 						data={chartData}
@@ -89,7 +89,7 @@ export default function CoinChart({
 					</LineChart>
 				</ChartContainer>
 			</CardContent>
-			<CardFooter className="flex gap-8 items-center justify-center text-sm">
+			<CardFooter className="flex flex-col gap-4 items-center justify-center text-sm">
 				<div className="flex gap-2 items-center">
 					<span className="text-xs">Sentiment to Buy</span>
 					<TrendingUp className="text-emerald-500" />

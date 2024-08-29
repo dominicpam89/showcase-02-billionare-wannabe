@@ -16,10 +16,14 @@ export default function ChartNFT() {
 		<div
 			id="nft-container-id"
 			aria-label="nft-container"
-			className="w-full flex gap-4"
+			className="w-full flex flex-col lg:flex-row gap-4"
 		>
-			<img src={thumb} alt={name} className="w-3/12 h-auto" />
-			<div className="w-9/12 grid grid-cols-2 gap-3">
+			<img
+				src={thumb}
+				alt={name}
+				className="w-[100px] h-[100px] mx-auto mb-8 lg:mb-0 lg:w-3/12 lg:h-auto"
+			/>
+			<div className="w-full lg:w-9/12 grid grid-cols-1 lg:grid-cols-2 gap-3">
 				<BodyHeaderItem title="Name" description={name} />
 				<BodyHeaderItem
 					title="Current Price"
