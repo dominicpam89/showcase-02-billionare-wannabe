@@ -3,6 +3,7 @@ import MainLayout from "@/components/common/MainLayout";
 import { useContextGlobal } from "@/lib/hooks/useContextGlobal";
 import LoadingUI from "./components/common/LoadingUI";
 import MainEntry from "./components/main-entry/MainEntry";
+import ScrollTop from "./components/common/ScrollTop";
 
 export default function App() {
 	const { currentUser, mainState } = useContextGlobal();
@@ -11,6 +12,7 @@ export default function App() {
 			{mainState.isLoading && <LoadingUI shown={mainState.isLoading} />}
 			{mainState.isFetched && !currentUser && <Auth />}
 			{mainState.isFetched && currentUser && <MainEntry />}
+			<ScrollTop />
 		</MainLayout>
 	);
 }
