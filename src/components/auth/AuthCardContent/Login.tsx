@@ -19,7 +19,7 @@ export default function Login() {
 		resolver: zodResolver(loginSchema),
 		defaultValues: {
 			email: "stardreamer.extrim2@gmail.com",
-			password: "Silit5432!",
+			password: "Ind@hCekuli12345",
 		},
 	});
 	const onValid: SubmitHandler<Schema> = (data) => {
