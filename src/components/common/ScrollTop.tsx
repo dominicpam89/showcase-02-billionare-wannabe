@@ -14,7 +14,7 @@ export default function ScrollTop() {
 		<motion.div
 			style={{ opacity, translateY }}
 			ref={ref}
-			className="fixed bottom-10 right-10 z-[500]"
+			className="fixed bottom-10 right-10 z-10"
 		>
 			<Button
 				size="icon"
