@@ -9,12 +9,13 @@ import {
 import Coins from "./trending-coins/Coins";
 import Categories from "./trending-coins/Categories";
 import NFTS from "./trending-coins/NFTS";
+import TrendingCoinsLoading from "./TrendingCoins.loading";
 
 export default function TrendingCoins() {
 	const { coinGecko, useGetTrendingList } = useContextCoinGecko();
-	const { data, isLoading, error, isError, isSuccess, isFetched } =
+	const { data, isLoading, error, isError, isSuccess, isFetched, refetch } =
 		useGetTrendingList(coinGecko);
-	if (isLoading) return <>Temporary loading UI</>;
+	if (isLoading) return <TrendingCoinsLoading />;
 	return (
 		<div
 			aria-label="list-trending"
@@ -22,8 +23,9 @@ export default function TrendingCoins() {
 		>
 			{isError && (
 				<ErrorUI
-					title={"Error Fetching Trending Coins"}
+					title="Couldn't get data"
 					message={error.message}
+					refetch={refetch}
 				/>
 			)}
 			{isFetched && isSuccess && (

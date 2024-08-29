@@ -1,4 +1,4 @@
-import { it, expect } from "vitest";
+import { it, expect, vi } from "vitest";
 import { screen, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ErrorUI from "./ErrorUI";
@@ -9,10 +9,12 @@ interface Props {
 	message: string;
 }
 
+const mockRefetch = vi.fn();
+
 const MockComponent = ({ title, message }: Props) => {
 	return (
 		<Wrapper contextValue={{}}>
-			<ErrorUI title={title} message={message} />
+			<ErrorUI title={title} message={message} refetch={mockRefetch} />
 		</Wrapper>
 	);
 };
